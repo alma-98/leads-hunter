@@ -1,3 +1,14 @@
+#!/bin/bash
+
+echo "==========================================="
+echo "Leads-Hunter PART 3B"
+echo "Lead Finder UI"
+echo "==========================================="
+
+mkdir -p src/features/leads/components
+mkdir -p src/features/leads/pages
+
+cat > src/pages/LeadFinder/index.tsx <<'EOT'
 import { Search } from "lucide-react";
 import { useState } from "react";
 
@@ -117,3 +128,8 @@ No leads found
 )
 
 }
+EOT
+
+echo ""
+echo "Lead Finder Created"
+echo ""
