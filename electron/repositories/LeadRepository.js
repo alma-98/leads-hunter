@@ -1,17 +1,59 @@
-class LeadRepository {
+import db from "../database/database.js";
+
+export default class LeadRepository {
 
   findAll() {
-    return [];
+    return db.prepare(
+      "SELECT * FROM leads ORDER BY id DESC"
+    ).all();
   }
 
-  save(data) {
-    console.log("Save Lead", data);
+  count() {
+    return db.prepare(
+      "SELECT COUNT(*) total FROM leads"
+    ).get();
+  }
+
+  insert(data) {
+
+    return db.prepare(`
+      INSERT INTO leads (
+
+        business,
+        category,
+        email,
+        phone,
+        website,
+        address,
+        city,
+        province,
+        rating,
+        reviews
+
+      )
+
+      VALUES (
+
+        @business,
+        @category,
+        @email,
+        @phone,
+        @website,
+        @address,
+        @city,
+        @province,
+        @rating,
+        @reviews
+
+      )
+    `).run(data);
+
   }
 
   deleteAll() {
-    console.log("Delete All");
+    return db.prepare(
+      "DELETE FROM leads"
+    ).run();
   }
 
 }
-
-module.exports = LeadRepository;

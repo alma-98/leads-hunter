@@ -1,15 +1,23 @@
-const LeadRepository = require("../repositories/LeadRepository");
+import LeadRepository from "../repositories/LeadRepository.js";
 
-class LeadService {
+const repo = new LeadRepository();
 
-  constructor() {
-    this.repository = new LeadRepository();
-  }
+export default class LeadService {
 
   getAll() {
-    return this.repository.findAll();
+    return repo.findAll();
+  }
+
+  count() {
+    return repo.count();
+  }
+
+  create(data) {
+    return repo.insert(data);
+  }
+
+  removeAll() {
+    return repo.deleteAll();
   }
 
 }
-
-module.exports = LeadService;
