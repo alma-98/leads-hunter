@@ -1,3 +1,11 @@
+#!/bin/bash
+
+echo "========================================"
+echo "Leads-Hunter Dashboard"
+echo "PART 2B.2.1"
+echo "========================================"
+
+cat > src/pages/Dashboard/index.tsx <<'EOT'
 import {
 Database,
 Mail,
@@ -156,3 +164,8 @@ Settings
 )
 
 }
+EOT
+
+echo ""
+echo "Dashboard Created"
+echo ""
