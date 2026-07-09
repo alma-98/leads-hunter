@@ -1,3 +1,13 @@
+#!/bin/bash
+
+echo "========================================="
+echo "Leads-Hunter PART 3C"
+echo "Lead Database"
+echo "========================================="
+
+mkdir -p src/pages/LeadDatabase
+
+cat > src/pages/LeadDatabase/index.tsx <<'EOT'
 import { Download, Upload, Trash2, RefreshCw } from "lucide-react";
 
 const sample = [
@@ -105,3 +115,9 @@ Delete All
 )
 
 }
+EOT
+
+echo ""
+echo "========================================="
+echo "Lead Database Created"
+echo "========================================="
