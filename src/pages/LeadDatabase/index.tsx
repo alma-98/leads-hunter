@@ -1,27 +1,34 @@
 import CsvImport from "../../features/import/CsvImport";
+import ExcelImport from "../../features/import/ExcelImport";
 
-export default function LeadDatabase() {
+export default function LeadDatabase(){
 
-  return (
+    return(
 
-    <div className="space-y-6">
+        <div className="space-y-8">
 
-      <div>
+            <div>
 
-        <h1 className="text-3xl font-bold">
-          Lead Database
-        </h1>
+                <h1 className="text-3xl font-bold">
 
-        <p className="text-slate-500">
-          Import dan kelola data lead
-        </p>
+                    Lead Database
 
-      </div>
+                </h1>
 
-      <CsvImport />
+                <p className="text-slate-500">
 
-    </div>
+                    Import CSV dan Excel
 
-  );
+                </p>
+
+            </div>
+
+            <ExcelImport/>
+
+            <CsvImport/>
+
+        </div>
+
+    );
 
 }

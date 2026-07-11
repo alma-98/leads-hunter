@@ -1,7 +1,7 @@
 export async function exportCSV() {
-  console.log("Export CSV");
+  console.log("Export CSV belum tersedia");
 }
 
 export async function exportExcel() {
-  console.log("Export Excel");
+  return window.api.exportExcel();
 }

@@ -9,6 +9,7 @@ import MainLayout from "../layouts/MainLayout";
 import Dashboard from "../pages/Dashboard";
 import LeadFinder from "../pages/LeadFinder";
 import LeadDatabase from "../pages/LeadDatabase";
+import Leads from "../pages/Leads";
 import Broadcast from "../pages/Broadcast";
 import SMTP from "../pages/SMTP";
 import Reports from "../pages/Reports";
@@ -28,6 +29,8 @@ return (
 <Route path="lead-finder" element={<LeadFinder />} />
 
 <Route path="database" element={<LeadDatabase />} />
+
+<Route path="leads" element={<Leads />} />
 
 <Route path="broadcast" element={<Broadcast />} />
 

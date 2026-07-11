@@ -5,6 +5,8 @@ import { fileURLToPath } from "node:url";
 import { registerLeadIPC } from "./ipc/lead.ipc.js";
 import { registerDashboardIPC } from "./ipc/dashboard.ipc.js";
 import "./ipc/import.ipc.js";
+import "./ipc/maps.ipc.js";
+import "./ipc/export.ipc.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

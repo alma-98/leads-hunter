@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { exportExcel } from "../../services/export.service";
 
 interface Lead {
   id:number;
@@ -13,77 +14,126 @@ interface Lead {
 
 export default function Leads(){
 
-    const [leads,setLeads]=useState<Lead[]>([]);
+  const [leads,setLeads]=useState<Lead[]>([]);
 
-    useEffect(()=>{
+  async function loadLeads(){
 
-        window.api.getLeads().then((data:any)=>{
-            setLeads(data);
-        });
+    const data=await window.api.getLeads();
 
-    },[]);
+    setLeads(data);
 
-    return(
+  }
 
-        <div className="p-6">
+  useEffect(()=>{
 
-            <h1 className="text-3xl font-bold mb-6">
-                Lead Management
-            </h1>
+    loadLeads();
 
-            <div className="bg-white rounded-xl shadow">
+  },[]);
 
-                <table className="w-full">
+  async function handleExport(){
 
-                    <thead className="bg-gray-100">
+    const result=await exportExcel();
 
-                        <tr>
+    alert(
+`Export berhasil!
 
-                            <th className="p-3 text-left">Business</th>
+Lokasi:
 
-                            <th className="p-3 text-left">Category</th>
+${result.file}`
+    );
 
-                            <th className="p-3 text-left">Email</th>
+  }
 
-                            <th className="p-3 text-left">Phone</th>
+  return(
 
-                            <th className="p-3 text-left">City</th>
+    <div className="space-y-6">
 
-                        </tr>
+      <div className="flex items-center justify-between">
 
-                    </thead>
+        <div>
 
-                    <tbody>
+          <h1 className="text-3xl font-bold">
 
-                        {leads.map((lead)=>(
+            Lead Management
 
-                            <tr
-                                key={lead.id}
-                                className="border-b hover:bg-gray-50"
-                            >
+          </h1>
 
-                                <td className="p-3">{lead.business}</td>
+          <p className="text-slate-500">
 
-                                <td className="p-3">{lead.category}</td>
+            Total Lead : {leads.length}
 
-                                <td className="p-3">{lead.email}</td>
-
-                                <td className="p-3">{lead.phone}</td>
-
-                                <td className="p-3">{lead.city}</td>
-
-                            </tr>
-
-                        ))}
-
-                    </tbody>
-
-                </table>
-
-            </div>
+          </p>
 
         </div>
 
-    );
+        <button
+          onClick={handleExport}
+          className="rounded-lg bg-green-600 px-6 py-3 text-white hover:bg-green-700"
+        >
+
+          Export Excel
+
+        </button>
+
+      </div>
+
+      <div className="overflow-auto rounded-xl bg-white shadow">
+
+        <table className="w-full">
+
+          <thead className="bg-slate-100">
+
+            <tr>
+
+              <th className="p-3 text-left">Business</th>
+
+              <th className="p-3 text-left">Category</th>
+
+              <th className="p-3 text-left">Email</th>
+
+              <th className="p-3 text-left">Phone</th>
+
+              <th className="p-3 text-left">Website</th>
+
+              <th className="p-3 text-left">City</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            {leads.map((lead)=>(
+
+              <tr
+                key={lead.id}
+                className="border-b hover:bg-slate-50"
+              >
+
+                <td className="p-3">{lead.business}</td>
+
+                <td className="p-3">{lead.category}</td>
+
+                <td className="p-3">{lead.email}</td>
+
+                <td className="p-3">{lead.phone}</td>
+
+                <td className="p-3">{lead.website}</td>
+
+                <td className="p-3">{lead.city}</td>
+
+              </tr>
+
+            ))}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  );
 
 }
